@@ -32,3 +32,6 @@ select* from AddressBookTable where state = 'kerela'
 --UC7-Calculating the size of the record by state or city--
 select count(phoneNumber)as NoOfContact,state from AddressBookTable group by state
 select count(phoneNumber)as NoOfContact,city from AddressBookTable group by city
+--UC8-Retrieve record based on state or city--
+select * from AddressBookTable where city = 'madurai' order by(lastName)
+select * from AddressBookTable where state = 'Tamil Nadu' order by (firstName)
