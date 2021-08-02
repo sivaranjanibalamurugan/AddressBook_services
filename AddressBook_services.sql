@@ -20,3 +20,8 @@ insert into AddressBookTable values('Siva','Ranjani','East new st','madurai','Ta
 ('Karthik','Bala','KKnagar','Trichy','Tamil Nadu',600189,9861325453,'karthick@gmail.com'),
 ('Siva','Karthik','Anna nagar','salem','Tamil Nadu',600019,789643210,'sikar@gmail.com')
 select * from AddressBookTable
+--uC4- Edit contact in table--
+update AddressBookTable set email = 'bala@gmail.com' where firstName='Karthikk' and lastName='Bala'
+--UC5-Delete a person--
+delete from   AddressBookTable where firstname = 'Bala' and lastname = 'Vickram'
+
