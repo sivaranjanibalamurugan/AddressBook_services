@@ -29,4 +29,6 @@ delete from   AddressBookTable where firstname = 'Bala' and lastname = 'Vickram'
 --UC6-Retrieve the person using the state--
 select * from AddressBookTable where state='Tamil Nadu' or city = 'madurai'
 select* from AddressBookTable where state = 'kerela'
-
+--UC7-Calculating the size of the record by state or city--
+select count(phoneNumber)as NoOfContact,state from AddressBookTable group by state
+select count(phoneNumber)as NoOfContact,city from AddressBookTable group by city
