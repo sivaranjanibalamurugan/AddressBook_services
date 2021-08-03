@@ -41,4 +41,48 @@ update AddressBookTable set bookType='Friend' where personId= 1 or personId = 3
 update AddressBookTable set bookType='Family' where personId=4 or personId =5
 --UC10--Calculate Number of Contact based on book type
 select count(phoneNumber)as NoOfContact,bookType from AddressBookTable group by bookType
+--UC11-- Adding contact in Two type--
+insert into AddressBookTable values ('Bala','Shivan','RR.Nagar','Chennai','Tamil Nadu',600025,9876543210,'balsi@gmail.com','Family')
+--UC12 Creating the ER Diagram for the Table
+Create table ContactType 
+(
+ typeId int primary key,
+ typeName varchar(50)
+)
 
+create table ContactAddress
+(
+ contactId int ,
+ typeId int
+)
+
+create table AddresBook
+(
+  personId int identity(1,1) primary key,
+  firstName varchar(100),
+  lastName varchar(100),
+  address varchar(200),
+  city varchar(50),
+  state varchar(100),
+  zipCode bigint,
+  phoneNumber bigint,
+  email varchar(50),
+  typeId int
+)
+--inserting records into the AddressBook--
+Insert into AddressBook (firstName,lastName,address,city,state,zipCode,phoneNumber,email) 
+Select firstName,lastName,address,city,state,zipCode,phoneNumber,email from AddressBookTable
+
+Alter table AddressBook drop column typeId
+select * from AddressBook
+
+--Inserting the contact type such as Friends and family, Profession
+insert into ContactType values (1,'Friend'),(2,'Family'),(3,'Science')
+select * from ContactType
+
+--Inserting the Contact Address that link type and person id
+insert into ContactAddress values(2,2),(3,2),(2,1),(4,1),(5,3)
+select * from ContactAddress
+
+Alter table ContactAddress Add foreign key (contactId) REFERENCES AddressBook(personId)
+Alter table ContactAddress Add foreign key (typeId) REFERENCES ContactType(typeId)
